@@ -1,15 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <PercentilForm msg="Calculadora de Percentiles"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PercentilForm from './components/PercentilForm.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    PercentilForm
   }
 }
 </script>
