@@ -48,6 +48,7 @@ export default {
 .outer{
   width:40%;
   border:1px solid;
+  margin-right:2%;
 }
 .form-container{
   display:flex;

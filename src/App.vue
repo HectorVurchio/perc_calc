@@ -1,14 +1,20 @@
 <template>
-  <PercentilForm msg="Calculadora de Percentiles"/>
+  <div class="mainrow">
+    <PercentilForm msg="Calculadora de Percentiles"/>
+    <DatosPaciente msg="Resultados del Paciente"/>
+  </div>
+  
 </template>
 
 <script>
 import PercentilForm from './components/PercentilForm.vue'
+import DatosPaciente from './components/DatosPaciente.vue'
 
 export default {
   name: 'App',
   components: {
-    PercentilForm
+    PercentilForm,
+    DatosPaciente
   }
 }
 </script>
@@ -21,5 +27,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.mainrow{
+  display:flex;
+  justify-content: center;
 }
 </style>
