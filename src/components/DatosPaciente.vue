@@ -44,10 +44,14 @@
 </div> 
 </template>
 <script>
+import calculations from "../services/calculations.js";
 export default {
   name: 'DatosPaciente',
   props: {
     msg: String
+  },
+  created(){  
+    console.log(calculations.calculaEdad('2018-03-30'));
   }
 }
 </script>
