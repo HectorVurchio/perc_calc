@@ -1,4 +1,5 @@
 //Indice de masa corporal por edad, edad en meses, imc en kg/m2
+const percentiles = ['P1','P3','P5','P10','P15','P25','P50','P75','P85','P90','P95','P97','P99'];
 //hembras de 0 a 13 semanas. un renglon por semana
 const hembras_0w_13w = [
     ['10.8','11.2','11.5','11.8','12.1','12.5','13.3','14.2','14.7','15','15.5','15.9','16.6'],
@@ -168,6 +169,9 @@ const varones_3m_5a = [
 
 //la edad viene en meses
 export default{
+    getPercentiles(){
+        return percentiles;
+    },
     getIMCHembras(age){
         if(age < 3){ return hembras_0w_13w;}
         return hembras_3m_5a;

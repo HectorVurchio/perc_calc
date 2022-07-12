@@ -1,7 +1,8 @@
 //PERCENTIL TALLA POR EDAD
+const percentiles = ['P1','P3','P5','P10','P15','P25','P50','P75','P85','P90','P95','P97','P99'];
 //ninas (femenino) de 0 swmanas a 13 semanas de edad. cada renglon representa la semana
 // y los percentiles estan ordenados [p1,p3,p5,p10,p15,p25,p50,p75,p85,p90,p95,p97,p99] talla en cm
-const ninas_0w_13w = [
+const hembras_0w_13w = [
     ['44.8','45.6','46.1','46.8','47.2','47.9','49.1','50.4','51.1','51.5','52.2','52.7','53.5'],
     ['45.9','46.8','47.2','47.9','48.4','49.1','50.3','51.6','52.3','52.7','53.4','53.9','54.7'],
     ['47.1','47.9','48.4','49.1','49.5','50.2','51.5','52.8','53.5','54','54.6','55.1','55.9'],
@@ -18,7 +19,7 @@ const ninas_0w_13w = [
     ['54.9','55.8','56.3','57.1','57.6','58.4','59.8','61.2','62','62.5','63.2','63.7','64.7']
 ];
 //ninas (femenino) de 0 meses a 60 meses de edad. cada renglon representa el mes. valores en cm.
-const ninas_3m_5y = [
+const hembras_3m_5y = [
     ['44.8','45.6','46.1','46.8','47.2','47.9','49.1','50.4','51.1','51.5','52.2','52.7','53.5'],
     ['49.1','50','50.5','51.2','51.7','52.4','53.7','55','55.7','56.2','56.9','57.4','58.2'],
     ['52.3','53.2','53.7','54.5','55','55.7','57.1','58.4','59.2','59.7','60.4','60.9','61.8'],
@@ -83,7 +84,7 @@ const ninas_3m_5y = [
 ];
 
 //ninos (masculino) de 0 a 3 semanas de edad. Talla en cm
-const ninos_0w_13w = [
+const varones_0w_13w = [
     ['45.5','46.3','46.8','47.5','47.9','48.6','49.9','51.2','51.8','52.3','53','53.4','54.3'],
     ['46.7','47.5','48','48.7','49.1','49.8','51.1','52.4','53.1','53.6','54.2','54.7','55.5'],
     ['47.9','48.8','49.2','49.9','50.4','51.1','52.3','53.6','54.3','54.8','55.5','55.9','56.8'],
@@ -101,7 +102,7 @@ const ninos_0w_13w = [
 ];
 
 // ninos(masculino) de 0 meses a 60 meses. Talla en cm
-const ninos_3m_5y = [
+const varones_3m_5y = [
     ['45.5','46.3','46.8','47.5','47.9','48.6','49.9','51.2','51.8','52.3','53','53.4','54.3'],
     ['50.2','51.1','51.5','52.2','52.7','53.4','54.7','56','56.7','57.2','57.9','58.4','59.3'],
     ['53.8','54.7','55.1','55.9','56.4','57.1','58.4','59.8','60.5','61','61.7','62.2','63.1'],
@@ -167,12 +168,15 @@ const ninos_3m_5y = [
 
 //la edad viene en meses
 export default{
-    getTallaNinas(age){
-        if(age < 3){ return ninas_0w_13w;}
-        return ninas_3m_5y;
+    getPercentiles(){
+        return percentiles;
     },
-    getTallaNinos(age){
-        if(age < 3){ return ninos_0w_13w;}
-        return ninos_3m_5y;
+    getTallaHembras(age){
+        if(age < 3){ return hembras_0w_13w;}
+        return hembras_3m_5y;
+    },
+    getTallaVarones(age){
+        if(age < 3){ return varones_0w_13w;}
+        return varones_3m_5y;
     }
 }

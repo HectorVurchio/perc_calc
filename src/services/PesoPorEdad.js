@@ -1,4 +1,5 @@
 //PERCENTIL PESO POR EDAD
+const percentiles = ['P1','P3','P5','P10','P15','P25','P50','P75','P85','P90','P95','P97','P99'];
 //ninas (femenino) de 0 swmanas a 13 semanas de edad. cada renglon representa la semana
 // y los percentiles estan ordenados [p1,p3,p5,p10,p15,p25,p50,p75,p85,p90,p95,p97,p99] peso en KG
 const hembras_0w_13w = [
@@ -168,6 +169,9 @@ const varones_3m_5y = [
 
 //la edad viene en meses
 export default{
+    getPercentiles(){
+        return percentiles;
+    },
     getPesoHembras(age){
         if(age < 3){ return hembras_0w_13w;}
         return hembras_3m_5y;

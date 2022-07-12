@@ -1,4 +1,5 @@
 // TABLAS DE PESO SEGUN LA ALTURA
+const percentiles = ['P1','P3','P5','P10','P15','P25','P50','P75','P85','P90','P95','P97','P99'];
 // ninas (femenino) de 0 a 2 anos. Altura en cm, peso en kg
 const hembras_0a_2a = [
     {'altura':'45','pesos':['2','2.1','2.1','2.2','2.2','2.3','2.5','2.6','2.7','2.8','2.9','2.9','3.1']},
@@ -502,6 +503,9 @@ const varones_2a_5a = [
 
 //la edad viene en meses
 export default{
+    getPercentiles(){
+        return percentiles;
+    },
     getPesoAlturaHembras(age){
         if(age < 24){ return hembras_0a_2a;}
         return hembras_2a_5a;

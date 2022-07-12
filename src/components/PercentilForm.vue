@@ -2,7 +2,7 @@
   <div class="outer">
     <h1>{{ msg }}</h1>
     <div class="form-container">
-      <form class="percform" id="percform-1">
+      <form class="percform" id="percform-1" @submit.prevent="onSubmit">
         <div class="row">
             <div class="col">
               <label for="sexo">Sexo</label>
@@ -23,11 +23,11 @@
           </div>
           <div class="col">
             <label for="fechnac">Fecha de Nacimiento</label>
-            <input type="date">
+            <input type="date" id="fenac">
           </div>
         </div>
         <div class="row">
-          <button id="calcular">Calcular</button>
+          <button id="calcular" @click="calcula_percentiles()">Calcular</button>
         </div>
       </form>
     </div>
@@ -39,7 +39,20 @@ export default {
   name: 'PercentilForm',
   props: {
     msg: String
+  },
+  methods:{
+    calcula_percentiles(){
+      const form = document.forms['percform-1'];
+      const elements = form.elements;
+      const sexo = elements['sexo'].value;
+      const talla = elements['talla'].value;
+      const peso = elements['peso'].value;
+      const fenac = elements['fenac'].value;
+      const objvalues = {"trigger":true,"sexo":sexo,"talla":talla,"peso":peso,"fenac":fenac};
+      this.$emit('clicked', objvalues);
+    }
   }
+
 }
 </script>
 
