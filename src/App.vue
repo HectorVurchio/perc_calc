@@ -17,33 +17,32 @@
         />
   </div>
   <div class="graphicrow" v-show="showPatientData">
-      <GraphicAlturaEdad :optionsAltura="optionsAltura" :seriesAltura="seriesAltura" :optionsPeso="optionsPeso" :seriesPeso="seriesPeso"/>
+      <GraphicSize :ChangeValues="acciona" :value="value"/>
+      <GraphicWeight :ChangeValues="acciona" :value="value"/>
   </div>
   <div class="graphicrow" v-show="showPatientData">
-      <GraphicAlturaPesoIMC :optionsAlturaPeso="optionsAlturaPeso" :seriesAlturaPeso="seriesAlturaPeso" :optionsIMCedad="optionsIMCedad" :seriesIMCedad="seriesIMCedad" />
+    <GraphicSizeWeight :ChangeValues="acciona" :value="value"/>
+    <GraphicIMC :ChangeValues="acciona" :value="value"/>
   </div>
-
-  
 </template>
 
 <script>
 import PercentilForm from './components/PercentilForm.vue'
 import DatosPaciente from './components/DatosPaciente.vue'
 import calculations from "./services/calculations.js";
-import GraphicAlturaEdad from './components/GraPhicAlturaEdad.vue';
-import graphicAltura from './services/graphicAltura.js';
-import graphicPeso from './services/graphicPeso.js';
-import graphicAlturaPeso from './services/graphicAlturaPeso.js';
-import GraphicAlturaPesoIMC from './components/GraphicAlturaPesoIMC.vue'
-import graphicIMCedad from './services/graphicIMCedad.js';
-
+import GraphicSize from './components/GraphicSize.vue';
+import GraphicWeight from './components/GraphicWeight.vue';
+import GraphicSizeWeight from './components/GraphicSizeWeight.vue';
+import GraphicIMC from './components/GraphicIMC.vue';
 export default {
   name: 'App',
   components: {
     PercentilForm,
     DatosPaciente,
-    GraphicAlturaEdad,
-    GraphicAlturaPesoIMC
+    GraphicSize,
+    GraphicWeight,
+    GraphicSizeWeight,
+    GraphicIMC
   },
   methods: {
       onClickChild (value) {
@@ -72,23 +71,15 @@ export default {
           this.imc = imc;
           const imcPorEdad = calculations.calculaIMCporEdad(value.sexo,edad,imc); 
           this.PerIMCEdad = imcPorEdad[0];
-          //Construccion de las GRAFICAS
-                  //grafica altura - edad
-          const graphicTalla = graphicAltura.getOptions(percentilTalla[1],percentilTalla[2],value.talla);
-          this.optionsAltura = graphicTalla[0];
-          this.seriesAltura = graphicTalla[1];
-                  //grafica peso - edad
-          const graphicPesoPer = graphicPeso.getOptions(percentilPeso[1],percentilPeso[2],value.peso);
-          this.optionsPeso = graphicPesoPer[0];
-          this.seriesPeso = graphicPesoPer[1];
-                //grafico peso - altura
-          const graphicAHeightWeight = graphicAlturaPeso.getOptions(pesoParaAltura[3],value.talla,value.peso);
-          this.optionsAlturaPeso = graphicAHeightWeight[0];
-          this.seriesAlturaPeso = graphicAHeightWeight[1];
-                //grafico del indice de masa corporal
-          const graphicIMCage = graphicIMCedad.getOptions(imcPorEdad[1],imcPorEdad[2],imc);
-          this.optionsIMCedad = graphicIMCage[0];
-          this.seriesIMCedad = graphicIMCage[1];
+          //Construccion de las GRAFICAS 
+          value['percentilTalla'] = percentilTalla;
+          value['percentilPeso'] = percentilPeso;
+          value['pesoParaAltura'] = pesoParaAltura;
+          value['imcPorEdad'] = imcPorEdad;
+          value["IMC"] = imc;
+          this.acciona++;
+          this.value = value;
+          
       },
   },
   created(){ },
@@ -106,14 +97,8 @@ export default {
      PerIMCEdad: "",
      sobrepeso: "",
      obesidad: "",
-     optionsAltura: {},
-     seriesAltura: [],
-     optionsPeso: {},
-     seriesPeso: [],
-     optionsAlturaPeso: {},
-     seriesAlturaPeso: [],
-     optionsIMCedad: {},
-     seriesIMCedad: []
+     acciona:0,
+     value:{}
     };
   },
 }
