@@ -38,7 +38,7 @@ export default{
             }
             percIndex = i;
         }
-        return percentiles[percIndex];
+        return [percentiles[percIndex],tablaPercTalla,ageOfCalc];
     },
     calculaPercentilPesoP(sex,age,weight){
          //1. determinar su edad en meses
@@ -62,7 +62,7 @@ export default{
             }
             percIndex = i;
         }
-        return percentiles[percIndex];
+        return [percentiles[percIndex],tablaPerPeso,ageInMonths];
     },
     calculaPesoParaAltura(sex,age,size,weight){
         //1. determinar su edad en meses
@@ -93,7 +93,7 @@ export default{
             }
             percIndex = i;
         }
-        return [percentiles[percIndex],vectorPesos[8],vectorPesos[10]];
+        return [percentiles[percIndex],vectorPesos[8],vectorPesos[10],tablaPerPeso];
     },
     calculaIMCporEdad(sex,age,imc){
         //1. determinar su edad en meses
@@ -117,6 +117,6 @@ export default{
              }
              percIndex = i;
          }
-         return percentiles[percIndex];
+         return [percentiles[percIndex],tablaPerIMC,ageInMonths];
     }
 }
