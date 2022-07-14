@@ -30,7 +30,7 @@
             <div class="col"><label id="imc_commeent_label">{{ PerIMCEdad }}</label></div>
         </div>
         <div class="row">
-            <div class="col"><label id="overweight">No hay sobrepeso</label></div>
+            <div class="col"><label id="overweight">{{ weightstatus }}</label></div>
         </div>
         <div class="row">
             <div class="col"><label>Sobrepeso a Partir de:</label></div>
@@ -58,6 +58,7 @@ export default {
     pesoParaAltura: String,
     imc: String,
     PerIMCEdad: String,
+    weightstatus: String,
     sobrepeso: String,
     obesidad: String
   },

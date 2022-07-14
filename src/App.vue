@@ -12,6 +12,7 @@
         :pesoParaAltura="pesoParaAltura"
         :imc="imc"
         :PerIMCEdad="PerIMCEdad"
+        :weightstatus="weightstatus"
         :sobrepeso="sobrepeso"
         :obesidad="obesidad"
         />
@@ -66,6 +67,15 @@ export default {
           this.pesoParaAltura = pesoParaAltura[0];
           this.sobrepeso = pesoParaAltura[1];
           this.obesidad = pesoParaAltura[2];
+          if(Number(value.peso) < Number(pesoParaAltura[1])){
+            this.weightstatus = "No Hay Sobrepeso";
+          }else{
+            if(Number(value.peso) < Number(pesoParaAltura[2])){
+              this.weightstatus = "Sobrepeso";
+            }else{
+              this.weightstatus = "Obesidad";
+            }
+          }
           //calculo del indice de masa corporal
           const imc = (calculations.calculaIMC(value.peso,value.talla)).toFixed(2);
           this.imc = imc;
@@ -95,6 +105,7 @@ export default {
      pesoParaAltura: "",
      imc: "",
      PerIMCEdad: "",
+     weightstatus:"",
      sobrepeso: "",
      obesidad: "",
      acciona:0,

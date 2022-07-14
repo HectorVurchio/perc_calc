@@ -38,7 +38,15 @@ export default{
             }
             percIndex = i;
         }
-        return [percentiles[percIndex],tablaPercTalla,ageOfCalc];
+        let percentil = '';
+        if(Number(size) < Number(vectorTallas[0])){
+            percentil = `Menor que ${percentiles[0]}`;
+        }else if(Number(size) > Number(vectorTallas[vectorTallas.length - 1])){
+            percentil = `Mayor que ${percentiles[percentiles.length - 1]}`;
+        }else{
+            percentil = percentiles[percIndex];
+        }
+        return [percentil,tablaPercTalla,ageOfCalc];
     },
     calculaPercentilPesoP(sex,age,weight){
          //1. determinar su edad en meses
@@ -62,7 +70,15 @@ export default{
             }
             percIndex = i;
         }
-        return [percentiles[percIndex],tablaPerPeso,ageInMonths];
+        let percentil = '';
+        if(Number(weight) < Number(vectorPesos[0])){
+            percentil = `Menor que ${percentiles[0]}`;
+        }else if(Number(weight) > Number(vectorPesos[vectorPesos.length - 1])){
+            percentil = `Mayor que ${percentiles[percentiles.length - 1]}`;
+        }else{
+            percentil = percentiles[percIndex];
+        }
+        return [percentil,tablaPerPeso,ageInMonths];
     },
     calculaPesoParaAltura(sex,age,size,weight){
         //1. determinar su edad en meses
@@ -93,7 +109,15 @@ export default{
             }
             percIndex = i;
         }
-        return [percentiles[percIndex],vectorPesos[8],vectorPesos[10],tablaPerPeso];
+        let percentil = '';
+        if(Number(weight) < Number(vectorPesos[0])){
+            percentil = `Menor que ${percentiles[0]}`;
+        }else if(Number(weight) > Number(vectorPesos[vectorPesos.length - 1])){
+            percentil = `Mayor que ${percentiles[percentiles.length - 1]}`;
+        }else{
+            percentil = percentiles[percIndex];
+        }
+        return [percentil,vectorPesos[8],vectorPesos[10],tablaPerPeso];
     },
     calculaIMCporEdad(sex,age,imc){
         //1. determinar su edad en meses
@@ -117,6 +141,14 @@ export default{
              }
              percIndex = i;
          }
-         return [percentiles[percIndex],tablaPerIMC,ageInMonths];
+         let percentil = '';
+        if(Number(imc) < Number(vectorPesos[0])){
+            percentil = `Menor que ${percentiles[0]}`;
+        }else if(Number(imc) > Number(vectorPesos[vectorPesos.length - 1])){
+            percentil = `Mayor que ${percentiles[percentiles.length - 1]}`;
+        }else{
+            percentil = percentiles[percIndex];
+        }
+         return [percentil,tablaPerIMC,ageInMonths];
     }
 }
