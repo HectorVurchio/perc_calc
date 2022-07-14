@@ -4,6 +4,7 @@ import TallaPorEdad from './TallaPorEdad.js';
 import PesoPorEdad from './PesoPorEdad.js';
 import PesoParaAltura from './PesoParaAltura.js';
 import IMCporEdad from './IMCporEdad.js';
+import CraneoPorEdad from './CraneoPorEdad.js';
 export default{
     calculaEdad(nacimiento){
         const now = moment().format("YYYY-MM-DD");
@@ -150,5 +151,39 @@ export default{
             percentil = percentiles[percIndex];
         }
          return [percentil,tablaPerIMC,ageInMonths];
+    },
+
+    calculaCraneoPorEdad(sex,age,circunf){
+        //1. determinar su edad en meses
+        const ageInMonths =Number(age.years) * 12 + Number(age.months);
+        let tablaPerCraneo;  //obtiene la tabla de percentiles correspondiente
+         //2. determinar si es nino o nina
+         if(sex == 'femenino'){
+            tablaPerCraneo = CraneoPorEdad.getCraneoHembras(ageInMonths);
+        }else{
+            tablaPerCraneo = CraneoPorEdad.getCraneoVarones(ageInMonths);
+        }
+        const percentiles = CraneoPorEdad.getPercentiles();
+         //3. determinar si es menor de 3 meses, en ese caso se usara la edad en semanas
+         const ageOfCalc = (ageInMonths < 3) ? Number(age.months) * 4 + Math.round(Number(age.days)/7) : ageInMonths;
+         //4. iterar en el renglon de las tallas correspondientes a la edad
+         const vectorPesos = tablaPerCraneo[ageOfCalc];
+         let percIndex = 0;  //indice  aproximado del percentil buscado 
+         for(let i = 0; i < vectorPesos.length; i++){
+             if(Number(circunf) < Number(vectorPesos[i])){
+                 break;
+             }
+             percIndex = i;
+         }
+         let percentil = '';
+        if(Number(circunf) < Number(vectorPesos[0])){
+            percentil = `Menor que ${percentiles[0]}`;
+        }else if(Number(circunf) > Number(vectorPesos[vectorPesos.length - 1])){
+            percentil = `Mayor que ${percentiles[percentiles.length - 1]}`;
+        }else{
+            percentil = percentiles[percIndex];
+        }
+         return [percentil,tablaPerCraneo,ageInMonths];       
     }
 }
+

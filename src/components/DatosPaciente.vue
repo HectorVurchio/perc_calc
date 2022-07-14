@@ -30,6 +30,11 @@
             <div class="col"><label id="imc_commeent_label">{{ PerIMCEdad }}</label></div>
         </div>
         <div class="row">
+            <div class="col"><label>Perímetro Craneal:</label></div>
+            <div class="col"><label id="imclabel">{{ craneo }} cm</label></div>
+            <div class="col"><label id="imc_commeent_label">{{ percCraneo }}</label></div>
+        </div>
+        <div class="row">
             <div class="col"><label id="overweight">{{ weightstatus }}</label></div>
         </div>
         <div class="row">
@@ -57,6 +62,8 @@ export default {
     percentilPeso: String,
     pesoParaAltura: String,
     imc: String,
+    craneo: String,
+    percCraneo: String,
     PerIMCEdad: String,
     weightstatus: String,
     sobrepeso: String,

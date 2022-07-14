@@ -22,6 +22,12 @@
             <input type="text" id="peso">
           </div>
           <div class="col">
+            <label for="craneo">Longitud del Cráneo(cm)</label>
+            <input type="text" id="craneo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
             <label for="fechnac">Fecha de Nacimiento</label>
             <input type="date" id="fenac">
           </div>
@@ -48,7 +54,8 @@ export default {
       const talla = elements['talla'].value;
       const peso = elements['peso'].value;
       const fenac = elements['fenac'].value;
-      const objvalues = {"trigger":true,"sexo":sexo,"talla":talla,"peso":peso,"fenac":fenac};
+      const craneo = elements['craneo'].value;
+      const objvalues = {"trigger":true,"sexo":sexo,"talla":talla,"peso":peso,"fenac":fenac,"craneo":craneo};
       this.$emit('clicked', objvalues);
     }
   }

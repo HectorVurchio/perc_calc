@@ -11,6 +11,8 @@
         :percentilPeso="percentilPeso"
         :pesoParaAltura="pesoParaAltura"
         :imc="imc"
+        :craneo="craneo"
+        :percCraneo="percCraneo"
         :PerIMCEdad="PerIMCEdad"
         :weightstatus="weightstatus"
         :sobrepeso="sobrepeso"
@@ -25,6 +27,9 @@
     <GraphicSizeWeight :ChangeValues="acciona" :value="value"/>
     <GraphicIMC :ChangeValues="acciona" :value="value"/>
   </div>
+  <div class="graphicrow" v-show="showPatientData">
+    <GraphicCraneo :ChangeValues="acciona" :value="value"/>
+  </div>
 </template>
 
 <script>
@@ -35,6 +40,7 @@ import GraphicSize from './components/GraphicSize.vue';
 import GraphicWeight from './components/GraphicWeight.vue';
 import GraphicSizeWeight from './components/GraphicSizeWeight.vue';
 import GraphicIMC from './components/GraphicIMC.vue';
+import GraphicCraneo from './components/GraphicCraneo.vue';
 export default {
   name: 'App',
   components: {
@@ -43,7 +49,8 @@ export default {
     GraphicSize,
     GraphicWeight,
     GraphicSizeWeight,
-    GraphicIMC
+    GraphicIMC,
+    GraphicCraneo
   },
   methods: {
       onClickChild (value) {
@@ -81,12 +88,17 @@ export default {
           this.imc = imc;
           const imcPorEdad = calculations.calculaIMCporEdad(value.sexo,edad,imc); 
           this.PerIMCEdad = imcPorEdad[0];
+          //calculo de la circunferencia craneal
+          const circunfCraneal = calculations.calculaCraneoPorEdad(value.sexo,edad,value.craneo);
+          this.craneo = value.craneo;
+          this.percCraneo = circunfCraneal[0];
           //Construccion de las GRAFICAS 
           value['percentilTalla'] = percentilTalla;
           value['percentilPeso'] = percentilPeso;
           value['pesoParaAltura'] = pesoParaAltura;
           value['imcPorEdad'] = imcPorEdad;
           value["IMC"] = imc;
+          value['circunfCraneal'] = circunfCraneal;
           this.acciona++;
           this.value = value;
           
@@ -105,6 +117,8 @@ export default {
      pesoParaAltura: "",
      imc: "",
      PerIMCEdad: "",
+     craneo:"",
+     percCraneo:"",
      weightstatus:"",
      sobrepeso: "",
      obesidad: "",
