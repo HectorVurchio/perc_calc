@@ -6,9 +6,10 @@ import PesoParaAltura from './PesoParaAltura.js';
 import IMCporEdad from './IMCporEdad.js';
 import CraneoPorEdad from './CraneoPorEdad.js';
 export default{
-    calculaEdad(nacimiento){
-        const now = moment().format("YYYY-MM-DD");
-        return moment.preciseDiff(nacimiento,now,true);
+    calculaEdad(registro,nacimiento){
+        const registry = moment(registro);
+        //const now = moment().format("YYYY-MM-DD");
+        return moment.preciseDiff(nacimiento,registry,true);
     },
     calculaIMC(peso,talla){ 
         //peso en kilogramos y talla en centimetros

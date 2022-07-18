@@ -59,7 +59,7 @@ export default {
       getFeatures(value){
           this.showPatientData = value.trigger;
           this.sexo = value.sexo;
-          const edad = calculations.calculaEdad(value.fenac);
+          const edad = calculations.calculaEdad(value.fereg,value.fenac);
           this.edad = `${edad.years} años, ${edad.months} meses y ${edad.days} dias`;
           this.talla = value.talla;
           //calculo del percentil por talla

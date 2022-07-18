@@ -31,6 +31,10 @@
             <label for="fechnac">Fecha de Nacimiento</label>
             <input type="date" id="fenac">
           </div>
+          <div class="col">
+            <label for="fechreg">Fecha de Registro</label>
+            <input type="date" id="fereg">
+          </div>
         </div>
         <div class="row">
           <button id="calcular" @click="calcula_percentiles()">Calcular</button>
@@ -54,8 +58,9 @@ export default {
       const talla = elements['talla'].value;
       const peso = elements['peso'].value;
       const fenac = elements['fenac'].value;
+      const fereg = elements['fereg'].value;
       const craneo = elements['craneo'].value;
-      const objvalues = {"trigger":true,"sexo":sexo,"talla":talla,"peso":peso,"fenac":fenac,"craneo":craneo};
+      const objvalues = {"trigger":true,"sexo":sexo,"talla":talla,"peso":peso,"fenac":fenac,"fereg":fereg,"craneo":craneo};
       this.$emit('clicked', objvalues);
     }
   }
